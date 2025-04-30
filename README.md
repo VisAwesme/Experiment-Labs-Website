@@ -1,2 +1,6 @@
 # Experiment-Labs-Website
-The web-page for the Experiment Labs game on Roblox.
+
+Welcome, to the website for the underground research facility named `Experiment Labs`.
+
+...add more to this later
+
