@@ -7,12 +7,12 @@
 
 body, html {
   height: 100%;
-  overflow: visible;  /*reminder fix again later*/
+  overflow: invisible;  /*reminder fix again later*/
   background-color: #000;
 }
 
 .background {
-  background: url('../images/mainbackground.png') /*no-repeat center center fixed;*/;
+  background: url('../images/mainbackground.png') no-repeat center center fixed;
   
   background-size: cover;
   filter: blur(8px) brightness(0.4);
@@ -20,7 +20,7 @@ body, html {
   top: 0; left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1; /* also fix again later*/
+  z-index: -1; /* also fix again later*/
 }
 
 .sidebar {
