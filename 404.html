@@ -1,43 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Page Not Found</title>
-    <link rel="stylesheet" href="css/404-style.css"> <!-- add a CSS to this later-->
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-            background-color: #000;
-            color: white;
-            font-family: 'Fira Mono', monospace;
-        }
-        h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
-        p {
-            font-size: 1.5em;
-            margin-bottom: 30px;
-        }
-        a {
-            color: #8ecaff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        a:hover {
-            color: #ff8b8b;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>404 - Access Denied</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Fira Mono', monospace;
+    }
+
+    body {
+      background-color: #000;
+      color: #00ffcc;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    body::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(0deg, rgba(0,255,200,0.05) 0px, rgba(0,255,200,0.05) 1px, transparent 1px, transparent 2px);
+      pointer-events: none;
+      z-index: 1;
+      animation: flicker 0.15s infinite;
+    }
+
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 0.99;
+      }
+      20%, 24%, 55% {
+        opacity: 0.4;
+      }
+    }
+
+    h1 {
+      font-size: 2.8em;
+      margin-bottom: 20px;
+      color: #ff4e4e;
+      text-shadow: 0 0 8px red;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+
+    .glitch {
+      animation: glitch 1s infinite;
+    }
+
+    @keyframes glitch {
+      0% {
+        text-shadow: 2px 0 red, -2px 0 blue;
+      }
+      25% {
+        text-shadow: -2px 0 red, 2px 0 blue;
+      }
+      50% {
+        text-shadow: 2px 2px red, -2px -2px blue;
+      }
+      75% {
+        text-shadow: -2px 2px red, 2px -2px blue;
+      }
+      100% {
+        text-shadow: 2px 0 red, -2px 0 blue;
+      }
+    }
+
+    a {
+      color: #8ecaff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease, transform 0.2s ease;
+      z-index: 2;
+    }
+
+    a:hover {
+      color: #ff8b8b;
+      transform: scale(1.1);
+    }
+
+    .container {
+      z-index: 2;
+    }
+  </style>
 </head>
 <body>
-    <h1>404: Page Not Found</h1>
-    <p>Page doesn't exist... What are you looking for, Sublevel-6?</p>
-    <a href="/">Go Back to Home</a>
+  <div class="container">
+    <h1 class="glitch">ERROR 404: UNAUTHORIZED ACCESS</h1>
+    <p>ARIS: "You are not permitted to view this page.<br>Security breach logged — estimated response time: 42 seconds."</p>
+    <a href="/">Return to ELRB Mainframe</a>
+  </div>
 </body>
 </html>
