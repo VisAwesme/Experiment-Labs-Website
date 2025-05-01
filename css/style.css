@@ -7,7 +7,7 @@
 
 body, html {
   height: 100%;
-  background-color: #0000;
+  background-color: transparent;
   overflow: hidden;
   color: #fff;
 }
