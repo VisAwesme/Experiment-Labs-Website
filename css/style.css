@@ -7,12 +7,12 @@
 
 body, html {
   height: 100%;
-  overflow: hidden;
+  overflow: visible;  /*reminder fix again later*/
   background-color: #000;
 }
 
 .background {
-background: url('https://raw.githubusercontent.com/VisAwesme/Experiment-Labs-Website/main/images/mainbackground.png') center center fixed;
+background: url('https://raw.githubusercontent.com/VisAwesme/Experiment-Labs-Website/main/images/mainbackground.png') no-repeat center center fixed;
 
   background-size: cover;
   filter: blur(8px) brightness(0.4);
