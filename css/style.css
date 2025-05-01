@@ -12,7 +12,7 @@ body, html {
 }
 
 .background {
-  background: url('https://github.com/VisAwesme/Experiment-Labs-Website/blob/main/images/Untitled%20design(1).png?raw=true') no-repeat center center fixed;
+  background: url('images/mainbackground.png') no-repeat center center fixed;
   background-size: cover;
   filter: blur(8px) brightness(0.4);
   position: absolute;
