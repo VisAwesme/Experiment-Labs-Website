@@ -1,39 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <style>
-  body {
-    border: 5px solid red;
-    margin: 0;
-    box-sizing: border-box; 
-  }
-</style>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>404 - Omega Warning</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <title>OMEGA WARNING</title>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Fira Mono', monospace;
-    }
-
     body {
-      background-color: #000;
-      color: #ffffff;
-      height: 100vh;
+      background-color: black;
+      color: white;
+      font-family: 'Fira Mono', monospace;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
+      height: 100vh;
       text-align: center;
       overflow: hidden;
       position: relative;
+      padding: 20px;
     }
 
+    .container {
+      border: 3px solid red;
+      padding: 40px;
+      background-color: #000;
+      box-shadow: 0 0 20px red;
+      position: relative;
+      z-index: 2;
+    }
+
+    .glitch {
+      color: red;
+      font-size: 2.5em;
+      text-shadow:
+        2px 2px 0 #000,
+        0 0 10px red,
+        0 0 20px red;
+      animation: glitch 1s infinite;
+    }
+
+    @keyframes glitch {
+      0% {
+        text-shadow: 2px 2px 0 #000, 0 0 10px red;
+        transform: translate(0, 0);
+      }
+      20% {
+        text-shadow: -2px -2px 0 #000, 0 0 20px red;
+        transform: translate(-2px, 2px);
+      }
+      40% {
+        text-shadow: 2px -2px 0 #000, 0 0 10px red;
+        transform: translate(2px, -2px);
+      }
+      60% {
+        text-shadow: -2px 2px 0 #000, 0 0 20px red;
+        transform: translate(-2px, 2px);
+      }
+      80% {
+        text-shadow: 2px 2px 0 #000, 0 0 10px red;
+        transform: translate(0, 0);
+      }
+      100% {
+        text-shadow: -2px -2px 0 #000, 0 0 20px red;
+        transform: translate(1px, -1px);
+      }
+    }
+
+    p {
+      margin-top: 20px;
+      font-size: 1em;
+      line-height: 1.5em;
+      text-align: left;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 30px;
+      color: lime;
+      text-decoration: none;
+      border: 2px solid lime;
+      padding: 10px 20px;
+      font-weight: bold;
+      box-shadow: 0 0 10px lime;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    a:hover {
+      transform: scale(1.1);
+      background-color: #111;
+    }
+
+    /* CRT scanline overlay */
     body::after {
       content: "";
       position: absolute;
@@ -41,77 +98,25 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: repeating-linear-gradient(0deg, rgba(0,255,200,0.05) 0px, rgba(0,255,200,0.05) 1px, transparent 1px, transparent 2px);
-      pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(255, 0, 0, 0.05),
+        rgba(255, 0, 0, 0.05) 1px,
+        transparent 1px,
+        transparent 2px
+      );
       z-index: 1;
-      animation: flicker 0.15s infinite;
-    }
-
-    @keyframes flicker {
-      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-        opacity: 0.99;
-      }
-      20%, 24%, 55% {
-        opacity: 0.4;
-      }
-    }
-
-    h1 {
-      font-size: 2.8em;
-      margin-bottom: 20px;
-      color: #ff4e4e;
-      text-shadow: 0 0 8px red;
-    }
-
-    p {
-      font-size: 1.2em;
-      margin-bottom: 30px;
-    }
-
-    .glitch {
-      animation: glitch 1s infinite;
-    }
-
-    @keyframes glitch {
-      0% {
-        text-shadow: 2px 0 red, -2px 0 blue;
-      }
-      25% {
-        text-shadow: -2px 0 red, 2px 0 blue;
-      }
-      50% {
-        text-shadow: 2px 2px red, -2px -2px blue;
-      }
-      75% {
-        text-shadow: -2px 2px red, 2px -2px blue;
-      }
-      100% {
-        text-shadow: 2px 0 red, -2px 0 blue;
-      }
-    }
-
-    a {
-      color: #ffcc00;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s ease, transform 0.2s ease;
-      z-index: 2;
-    }
-
-    a:hover {
-      color: #ff8b8b;
-      transform: scale(1.1);
-    }
-
-    .container {
-      z-index: 2;
+      pointer-events: none;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1 class="glitch">ERROR 404<br>OMEGA WARNING</h1>
-    <p>THIS PAGE HAS BEEN BLOCKED FOR THE FOLLOWNG REASON(S).<br> > CLASSIFIED MATERIAL <br> > CONGITO HAZARDS <br> > HORRORS BEYOND HUMAN COMPREHENSION </p>
+    <p>THIS PAGE HAS BEEN BLOCKED FOR THE FOLLOWNG REASON(S).<br>
+    > CLASSIFIED MATERIAL <br>
+    > CONGITO HAZARDS <br>
+    > HORRORS BEYOND HUMAN COMPREHENSION </p>
     <a href="/">Return to ELRB Mainframe</a>
   </div>
 </body>
