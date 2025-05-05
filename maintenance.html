@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Err 503</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap" rel="stylesheet">
+  <style>
+    .maintenance-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+    }
+
+    .maintenance-container h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      text-shadow: 0 0 5px #ffffff;
+    }
+
+    .maintenance-container p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+      color: #bbbbbb;
+    }
+
+    .maintenance-container .spinner {
+      border: 5px solid rgba(255, 255, 255, 0.2);
+      border-top: 5px solid #ffffff;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .maintenance-container a {
+      text-decoration: none;
+      color: #8ecaff;
+      font-weight: bold;
+    }
+
+    .maintenance-container a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="background"></div>
+  <div class="overlay"></div>
+
+  <div class="maintenance-container">
+    <h1>EL Site is under maintence</h1>
+    <p>Oops! Seems like one of our IAM members messed with the site a bit...</p>
+    <div class="spinner"></div>
+  </div>
+</body>
+</html>
