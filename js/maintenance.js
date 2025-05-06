@@ -3,5 +3,5 @@ function isMaintenanceMode() {
 }
 
 if (isMaintenanceMode()) {
-  window.location.href = "503maintence?.html";
+  window.location.href = "503maintence.html";
 }
