@@ -1,28 +1,84 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Experiment Labs</title>
+  <meta name="description" content="Official website for Experiment Labs Research Base - A Roblox Experience" />
+  <title>Experiment Labs Research Base | Official Site</title>
   <link rel="stylesheet" href="css/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap" rel="stylesheet">
-  <script src="js/maintenance.js" defer></script>
+  <link rel="stylesheet" href="css/blog.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Fira+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="background"></div>
-  <div class="overlay"></div>
+  <div class="site-background"></div>
+  <header class="site-header">
+    <div class="logo-title">
+      <img src="images/mainbackground.png" alt="Experiment Labs Logo" class="logo" />
+      <div>
+        <h1>Experiment Labs</h1>
+        <p class="tagline">Research Base | Official Dev Blog</p>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="pages/main.html">Home</a></li>
+        <li><a href="#updates">Updates</a></li>
+        <li><a href="pages/blogs/">Dev Blog</a></li>
+        <li><a href="pages/credits.html">Team</a></li>
+        <li><a href="veryreallink.html">404 Test</a></li>
+      </ul>
+      <div class="header-actions">
+        <a href="https://www.roblox.com/communities/14628011/Experiment-Labs#!/about" target="_blank" class="cta-btn">Play Now</a>
+      </div>
+    </nav>
+  </header>
 
-  <div class="timestamp">CAM 03 - EXPERIMENT LABS<br> <span id="time">00:00:00</span></div>
+  <main class="content">
+    <section class="hero">
+      <h2>Welcome to Experiment Labs!</h2>
+      <p>Stay up to date with the latest news, updates, and behind-the-scenes info for the Experiment Labs Research Base Roblox game.</p>
+    </section>
 
-  <div class="sidebar">
-    <a href="https://www.roblox.com/communities/14628011/Experiment-Labs#!/about" class="title" target="_blank">EXPERIMENT LABS</a>
-    <ul class="menu">
-      <li><a href="pages/main.html">Main</a></li>
-      <li><a href="pages/credits.html">Credits</a></li>
-      <li><a href="veryreallink.html">404 Test</a></li>
-    </ul>
-    <div class="footer">CCTV SYSTEM v13.4.3</div>
-  </div>
+    <section id="blog" class="blog-section">
+      <h2>Latest Updates</h2>
+      <div class="pinned-posts">
+        <article class="blog-post pinned-post">
+          <div class="blog-card-header">
+            <span class="blog-category announcement">Important</span>
+            <time datetime="2025-08-21">Aug 21, 2025</time>
+          </div>
+          <h3>Back from our burnout!</h3>
+          <p>We're back from our burnout over the summer! Get ready for exciting new updates and features coming to Experiment Labs Research Base.</p>
+          <a href="pages/blogs/posts/back-from-burnout.html" class="read-more">Read Full Update</a>
+        </article>
+        
+        <article class="blog-post pinned-post">
+          <div class="blog-card-header">
+            <span class="blog-category update">Update</span>
+            <time datetime="2025-08-20">Aug 20, 2025</time>
+          </div>
+          <h3>Site Revamp & New Features</h3>
+          <p>Welcome to the new official Experiment Labs blog! We've completely redesigned our website to better serve our growing community. Check out all the new features and improvements.</p>
+          <a href="pages/blogs/posts/site-revamp.html" class="read-more">Read Full Update</a>
+        </article>
+      </div>
+      
+      <div class="blog-footer">
+        <a href="pages/blogs/" class="cta-btn">View All Updates</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-left">
+      <span>Server time (debug)</span>
+      <span id="time">00:00:00</span>
+    </div>
+    <div class="footer-right">
+      <span>&copy; 2025 Experiment Labs. All rights reserved.</span>
+    </div>
+  </footer>
 
   <script>
     function updateClock() {

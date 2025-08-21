@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Experiment Labs Research Base - News & Updates Archive">
+    <title>Dev Blog & Updates | Experiment Labs Research Base</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/blog.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Fira+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="site-background"></div>
+    <header class="site-header">
+        <div class="logo-title">
+            <a href="../../index.html">
+                <img src="../../images/mainbackground.png" alt="Experiment Labs Logo" class="logo" />
+            </a>
+            <div>
+                <h1>Dev Blog & Updates</h1>
+                <p class="tagline">All announcements and development updates</p>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../pages/main.html">Updates</a></li>
+                <li><a href="#" class="active">Dev Blog</a></li>
+                <li><a href="../../pages/credits.html">Team</a></li>
+            </ul>
+            <div class="header-actions">
+                <a href="https://www.roblox.com/communities/14628011/Experiment-Labs#!/about" target="_blank" class="cta-btn">Play Now</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="content blog-archive">
+        <div class="blog-controls">
+            <div class="search-container">
+                <input type="text" id="blogSearch" placeholder="Search blog posts...">
+                <select id="categoryFilter">
+                    <option value="all">All Categories</option>
+                    <option value="update">Game Updates</option>
+                    <option value="announcement">Announcements</option>
+                    <option value="development">Development</option>
+                    <option value="event">Events</option>
+                </select>
+            </div>
+        </div>
+
+        <section class="blog-grid">
+            <!-- Recent Posts -->
+            <article class="blog-card">
+                <div class="blog-card-header">
+                    <span class="blog-category announcement">Announcement</span>
+                    <time datetime="2025-08-21">Aug 21, 2025</time>
+                </div>
+                <h3>Back from our burnout!</h3>
+                <p>After a refreshing summer break, our team is back and ready to deliver exciting new updates!</p>
+                <a href="posts/back-from-burnout.html" class="read-more">Read More</a>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-card-header">
+                    <span class="blog-category update">Update</span>
+                    <time datetime="2025-08-20">Aug 20, 2025</time>
+                </div>
+                <h3>Site Revamp & New Features</h3>
+                <p>Welcome to our newly redesigned website! We've made significant improvements to better serve our community.</p>
+                <a href="posts/site-revamp.html" class="read-more">Read More</a>
+            </article>
+
+            <!-- Add more blog posts here -->
+        </section>
+
+        <div class="pagination">
+            <button class="pagination-btn" disabled>Previous</button>
+            <span class="page-number">Page 1 of 1</span>
+            <button class="pagination-btn" disabled>Next</button>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-left">
+            <span>CCTV SYSTEM v13.4.3</span>
+            <span id="time">00:00:00</span>
+        </div>
+        <div class="footer-right">
+            <span>&copy; 2025 Experiment Labs. All rights reserved.</span>
+        </div>
+    </footer>
+
+    <script>
+        // Clock update
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('time').textContent =
+                now.toLocaleTimeString('en-GB', { hour12: false });
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Blog search functionality
+        const searchInput = document.getElementById('blogSearch');
+        const categoryFilter = document.getElementById('categoryFilter');
+        const blogCards = document.querySelectorAll('.blog-card');
+
+        function filterBlogPosts() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const category = categoryFilter.value;
+
+            blogCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const content = card.querySelector('p').textContent.toLowerCase();
+                const cardCategory = card.querySelector('.blog-category').textContent.toLowerCase();
+
+                const matchesSearch = title.includes(searchTerm) || content.includes(searchTerm);
+                const matchesCategory = category === 'all' || cardCategory.includes(category);
+
+                card.style.display = matchesSearch && matchesCategory ? 'block' : 'none';
+            });
+        }
+
+        searchInput.addEventListener('input', filterBlogPosts);
+        categoryFilter.addEventListener('change', filterBlogPosts);
+    </script>
+</body>
+</html>
