@@ -159,13 +159,6 @@ Potential additions to the ARG system:
 - **Time-Based Events**: Messages that appear at specific times
 - **User Input**: Interactive elements that respond to user actions
 
-## 📚 Lore Integration
-
-This website is part of the larger Experiment Labs universe. For complete lore information, see the `misclorethings/` folder containing:
-- **ELCLoreOverview**: Company history and structure
-- **ELRBAbberationBiologyLore**: Aberration research and containment
-- **ELRBTeams**: Staff structure and access levels
-
 ## 🤝 Contributing
 
 To enhance the ARG experience:
