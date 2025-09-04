@@ -1,93 +1,306 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Official website for Experiment Labs Research Base - A Roblox Experience" />
-  <title>Experiment Labs Corporation | Official Site</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/blog.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Fira+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Official website for Experiment Labs Corporation - Leading innovation in clean energy, AI research, and space exploration">
+  <title>Experiment Labs Corporation - No Risk, No Revolution</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 <body>
-  <div class="site-background"></div>
-  <header class="site-header">
-    <div class="logo-title">
-      <img src="images/mainbackground.png" alt="Experiment Labs Logo" class="logo" />
-      <div>
-        <h1>Experiment Labs</h1>
-        <p class="tagline">Corporation | Landing page</p>
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loading-content">
+      <div class="loading-logo">ELC</div>
+      <div class="loading-bar">
+        <div class="loading-progress"></div>
       </div>
+      <div class="loading-text">Initializing Systems...</div>
     </div>
-    <nav class="main-nav">
-      <ul>
-        <li><a href="pages/main.html">Home</a></li>
-        <li><a href="#updates">Updates</a></li>
-        <li><a href="pages/blogs/">Dev Blog</a></li>
-        <li><a href="pages/credits.html">Team</a></li>
-        <li><a href="veryreallink.html">404 Test</a></li>
-      </ul>
-      <div class="header-actions">
-        <a href="https://www.roblox.com/communities/14628011/Experiment-Labs#!/about" target="_blank" class="cta-btn">Play Now</a>
+  </div>
+
+  <header class="site-header">
+    <div class="header-container">
+      <div class="logo-section">
+        <div class="logo-container">
+          <div class="logo-symbol">ELC</div>
+          <div class="logo-text">
+            <h1>Experiment Labs Corporation</h1>
+            <p class="tagline">No Risk, No Revolution</p>
+          </div>
+        </div>
       </div>
-    </nav>
+      
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#research" class="nav-link">Research</a></li>
+          <li><a href="#careers" class="nav-link">Careers</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+          <li><a href="pages/accesspages/employee-access.html" class="nav-link employee-portal">Employee Portal</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   <main class="content">
-    <section class="hero">
-      <h2>Welcome to Experiment Labs Corporation!</h2>
-      <p>Stay up to date with the latest news, updates, and behind-the-scenes info for the Experiment Labs Corporation Roblox game(s).</p>
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <h2>Advancing Humanity Through Innovation</h2>
+        <p class="hero-subtitle">Leading the world in clean energy, artificial intelligence, and space exploration since 1969</p>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-number">68</span>
+            <span class="stat-label">Years of Innovation</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">150+</span>
+            <span class="stat-label">Server Clusters</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">∞</span>
+            <span class="stat-label">Possibilities</span>
+          </div>
+        </div>
+        <div class="hero-cta">
+          <a href="#research" class="btn btn-primary">Explore Our Research</a>
+          <a href="pages/accesspages/employee-access.html" class="btn btn-secondary">Employee Access</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="reactor-visual">
+          <div class="reactor-core"></div>
+          <div class="reactor-rings">
+            <div class="ring ring-1"></div>
+            <div class="ring ring-2"></div>
+            <div class="ring ring-3"></div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section id="blog" class="blog-section">
-      <h2>Latest Updates</h2>
-      <div class="pinned-posts">
-        <article class="blog-post pinned-post">
-          <div class="blog-card-header">
-            <span class="blog-category announcement">Important</span>
-            <time datetime="2025-08-21">Aug 21, 2025</time>
+    <section id="about" class="about-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>About Experiment Labs</h2>
+          <p>Pioneering the future through responsible innovation</p>
+        </div>
+        <div class="about-grid">
+          <div class="about-card">
+            <div class="card-icon">🔬</div>
+            <h3>Scientific Excellence</h3>
+            <p>Our research spans nuclear fusion, AI development, and space exploration, pushing the boundaries of what's possible.</p>
           </div>
-          <h3>Back from our burnout!</h3>
-          <p>We're back from our burnout over the summer! Get ready for exciting new updates and features coming to Experiment Labs Research Base.</p>
-          <a href="pages/blogs/posts/back-from-burnout.html" class="read-more">Read Full Update</a>
-        </article>
-        
-        <article class="blog-post pinned-post">
-          <div class="blog-card-header">
-            <span class="blog-category update">Update</span>
-            <time datetime="2025-08-20">Aug 20, 2025</time>
+          <div class="about-card">
+            <div class="card-icon">🌍</div>
+            <h3>Global Impact</h3>
+            <p>Operating facilities across North America, Europe, and Asia, we're building a sustainable future for all humanity.</p>
           </div>
-          <h3>Site Revamp & New Features</h3>
-          <p>Welcome to the new official Experiment Labs blog! We've completely redesigned our website to better serve our growing community. Check out all the new features and improvements.</p>
-          <a href="pages/blogs/posts/site-revamp.html" class="read-more">Read Full Update</a>
-        </article>
+          <div class="about-card">
+            <div class="card-icon">🚀</div>
+            <h3>Space Operations</h3>
+            <p>From our Jupiter-orbiting Hawke Station to deep space research, we're expanding humanity's reach into the cosmos.</p>
+          </div>
+        </div>
       </div>
-      
-      <div class="blog-footer">
-        <a href="pages/blogs/" class="cta-btn">View All Updates</a>
+    </section>
+
+    <section id="research" class="research-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Research & Development</h2>
+          <p>Cutting-edge projects that define tomorrow</p>
+        </div>
+        <div class="research-grid">
+          <div class="research-card">
+            <div class="research-image">
+              <div class="placeholder-image">ArcStar</div>
+            </div>
+            <div class="research-content">
+              <h3>ArcStar Fusion Reactor</h3>
+              <p>Our flagship clean energy project, providing sustainable power through advanced fusion technology.</p>
+              <div class="research-status">
+                <span class="status-badge status-active">Active</span>
+                <span class="research-date">Operational since 2016</span>
+              </div>
+              <div class="research-links">
+                <a href="pages/accesspages/employee-access.html" class="btn btn-secondary" style="margin-top: 1rem; font-size: 0.8rem;">Learn More</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="research-card">
+            <div class="research-image">
+              <div class="placeholder-image">AI</div>
+            </div>
+            <div class="research-content">
+              <h3>Artificial Intelligence Systems</h3>
+              <p>Advanced AI including ARIS, Project Titan, and DAWN for facility management and research optimization.</p>
+              <div class="research-status">
+                <span class="status-badge status-active">Active</span>
+                <span class="research-date">Continuous Development</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="research-card">
+            <div class="research-image">
+              <div class="placeholder-image">Space</div>
+            </div>
+            <div class="research-content">
+              <h3>Space Exploration</h3>
+              <p>Interplanetary research from our Jupiter-orbiting Hawke Station to deep space exploration initiatives.</p>
+              <div class="research-status">
+                <span class="status-badge status-active">Active</span>
+                <span class="research-date">Ongoing Missions</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="careers" class="careers-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Join Our Team</h2>
+          <p>Be part of the revolution that shapes humanity's future</p>
+        </div>
+        <div class="careers-content">
+          <div class="careers-text">
+            <h3>Why Choose Experiment Labs?</h3>
+            <ul class="benefits-list">
+              <li>Cutting-edge research facilities</li>
+              <li>Competitive compensation packages</li>
+              <li>Opportunities for advancement</li>
+              <li>Work on world-changing projects</li>
+              <li>Comprehensive benefits and security</li>
+            </ul>
+            <div class="careers-cta">
+              <a href="#contact" class="btn btn-primary">Apply Now</a>
+              <a href="pages/accesspages/employee-access.html" class="btn btn-secondary">Current Employees</a>
+
+            </div>
+          </div>
+          <div class="careers-visual">
+            <div class="facility-preview">
+              <div class="facility-layer layer-1"></div>
+              <div class="facility-layer layer-2"></div>
+              <div class="facility-layer layer-3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Contact Us</h2>
+          <p>Get in touch with our team</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-info">
+            <div class="contact-item">
+              <div class="contact-icon">📍</div>
+              <div>
+                <h4>Headquarters</h4>
+                <p>Experiment Labs Research Base<br>Canadian Shield, Northern Ontario</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">📧</div>
+              <div>
+                <h4>General Inquiries</h4>
+                <p>info@experimentlabs.com</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">🔒</div>
+              <div>
+                <h4>Security Concerns</h4>
+                <p>security@experimentlabs.com</p>
+              </div>
+            </div>
+          </div>
+          <div class="contact-form">
+            <form id="contactForm">
+              <div class="form-group">
+                <input type="text" id="name" name="name" placeholder="Full Name" required>
+              </div>
+              <div class="form-group">
+                <input type="email" id="email" name="email" placeholder="Email Address" required>
+              </div>
+              <div class="form-group">
+                <select id="subject" name="subject" required>
+                  <option value="">Select Subject</option>
+                  <option value="general">General Inquiry</option>
+                  <option value="careers">Career Opportunities</option>
+                  <option value="partnership">Partnership</option>
+                  <option value="media">Media Relations</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="footer-left">
-      <span>Server time (debug)</span>
-      <span id="time">00:00:00</span>
-    </div>
-    <div class="footer-right">
-      <span>&copy; 2025 Experiment Labs Corporation. All rights reserved.</span>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Experiment Labs Corporation</h4>
+          <p>Advancing humanity through innovation since 1969 | Operating in 2037</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#research">Research</a></li>
+            <li><a href="pages/accesspages/employee-access.html">Employee Access</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Connect</h4>
+          <div class="social-links">
+            <a href="#" class="social-link">LinkedIn</a>
+            <a href="#" class="social-link">Twitter</a>
+            <a href="#" class="social-link">YouTube</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2037 Experiment Labs Corporation. All rights reserved. | "No Risk, No Revolution"</p>
+        <p class="disclaimer">All characters and corporations or establishments appearing in this work are fictitious. Any resemblance to real companies or persons is purely coincidental. Do not contact other companies with similar names.</p>
+      </div>
     </div>
   </footer>
 
-  <script>
-    function updateClock() {
-      const now = new Date();
-      document.getElementById('time').textContent =
-        now.toLocaleTimeString('en-GB', { hour12: false });
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-  </script>
+  <!-- Hidden ARG Elements -->
+  <div class="arg-elements" style="display: none;">
+    <div class="hidden-message" data-message="SUBJECT-230-1-ECHO-STATUS-UNKNOWN"></div>
+    <div class="hidden-message" data-message="CONTAINMENT-BREACH-SUBLEVEL-5-DETECTED"></div>
+    <div class="hidden-message" data-message="PROJECT-DAWN-ACTIVATION-REQUIRED"></div>
+    <div class="hidden-message" data-message="ARCSTAR-POWER-LEVELS-ANOMALOUS"></div>
+  </div>
+
+  <script src="js/script.js"></script>
 </body>
 </html>

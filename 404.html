@@ -1,129 +1,361 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>OMEGA WARNING</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Access Denied - Experiment Labs Corporation</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      background-color: black;
-      color: white;
-      font-family: 'Fira Mono', monospace;
+    .error-page {
+      background: var(--primary-bg);
+      min-height: 100vh;
       display: flex;
-      justify-content: center;
       align-items: center;
-      height: 100vh;
-      text-align: center;
-      overflow: hidden;
+      justify-content: center;
+      padding: var(--spacing-md);
       position: relative;
-      padding: 20px;
-
-      /* 🔥 Fullscreen red border */
-      border: 5px solid red;
-      box-shadow: inset 0 0 25px red, 0 0 15px red;
+      overflow: hidden;
     }
-
-    .container {
-      max-width: 800px;
-      z-index: 2;
-    }
-
-    .glitch {
-      color: red;
-      font-size: 2.5em;
-      text-shadow:
-        2px 2px 0 #000,
-        0 0 10px red,
-        0 0 20px red;
-      animation: glitch 1s infinite;
-    }
-
-    @keyframes glitch {
-      0% {
-        text-shadow: 2px 2px 0 #000, 0 0 10px red;
-        transform: translate(0, 0);
-      }
-      20% {
-        text-shadow: -2px -2px 0 #000, 0 0 20px red;
-        transform: translate(-2px, 2px);
-      }
-      40% {
-        text-shadow: 2px -2px 0 #000, 0 0 10px red;
-        transform: translate(2px, -2px);
-      }
-      60% {
-        text-shadow: -2px 2px 0 #000, 0 0 20px red;
-        transform: translate(-2px, 2px);
-      }
-      80% {
-        text-shadow: 2px 2px 0 #000, 0 0 10px red;
-        transform: translate(0, 0);
-      }
-      100% {
-        text-shadow: -2px -2px 0 #000, 0 0 20px red;
-        transform: translate(1px, -1px);
-      }
-    }
-
-    p {
-      margin-top: 20px;
-      font-size: 1em;
-      line-height: 1.5em;
-      text-align: left;
-    }
-
-    a {
-      display: inline-block;
-      margin-top: 30px;
-      color: lime;
-      text-decoration: none;
-      border: 2px solid lime;
-      padding: 10px 20px;
-      font-weight: bold;
-      box-shadow: 0 0 10px lime;
-      transition: transform 0.2s ease-in-out;
-    }
-
-    a:hover {
-      transform: scale(1.1);
-      background-color: #111;
-    }
-
-    /* CRT scanline overlay */
-    body::after {
-      content: "";
+    
+    .error-page::before {
+      content: '';
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      background: repeating-linear-gradient(
-        0deg,
-        rgba(255, 0, 0, 0.05),
-        rgba(255, 0, 0, 0.05) 1px,
-        transparent 1px,
-        transparent 2px
-      );
-      z-index: 1;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 51, 51, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 204, 255, 0.1) 0%, transparent 50%);
       pointer-events: none;
+    }
+    
+    .error-container {
+      background: var(--tertiary-bg);
+      border: 2px solid var(--accent-red);
+      border-radius: 12px;
+      padding: var(--spacing-lg);
+      max-width: 800px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(255, 51, 51, 0.3);
+      position: relative;
+      z-index: 2;
+    }
+    
+    .error-code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8rem;
+      font-weight: 700;
+      color: var(--accent-red);
+      margin-bottom: var(--spacing-sm);
+      text-shadow: 0 0 20px rgba(255, 51, 51, 0.5);
+      animation: glitch 0.3s infinite;
+    }
+    
+    .error-title {
+      color: var(--text-primary);
+      font-size: 2rem;
+      margin-bottom: var(--spacing-sm);
+      font-weight: 600;
+    }
+    
+    .error-subtitle {
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-lg);
+      font-size: 1.1rem;
+    }
+    
+    .http-error {
+      background: var(--secondary-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: var(--spacing-md);
+      margin-bottom: var(--spacing-md);
+      text-align: left;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+    }
+    
+    .http-error .error-line {
+      margin-bottom: var(--spacing-xs);
+      color: var(--text-secondary);
+    }
+    
+    .http-error .error-line.error {
+      color: var(--accent-red);
+    }
+    
+    .http-error .error-line.warning {
+      color: var(--accent-orange);
+    }
+    
+    .http-error .error-line.info {
+      color: var(--accent-cyan);
+    }
+    
+    .error-message {
+      background: rgba(255, 51, 51, 0.1);
+      border: 1px solid var(--accent-red);
+      border-radius: 8px;
+      padding: var(--spacing-md);
+      margin-bottom: var(--spacing-md);
+      color: var(--text-primary);
+    }
+    
+    .error-message h3 {
+      color: var(--accent-red);
+      margin-bottom: var(--spacing-sm);
+      font-size: 1.2rem;
+    }
+    
+    .error-message p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .error-actions {
+      display: flex;
+      gap: var(--spacing-sm);
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: var(--spacing-sm) var(--spacing-md);
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all var(--transition-fast);
+      border: 2px solid transparent;
+      cursor: pointer;
+    }
+    
+    .btn-primary {
+      background: var(--accent-blue);
+      color: var(--text-primary);
+      border-color: var(--accent-blue);
+    }
+    
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--accent-blue);
+      transform: translateY(-2px);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-secondary);
+      border-color: var(--border-color);
+    }
+    
+    .btn-secondary:hover {
+      background: var(--tertiary-bg);
+      color: var(--text-primary);
+      border-color: var(--accent-blue);
+      transform: translateY(-2px);
+    }
+    
+    .arg-elements {
+      background: var(--secondary-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: var(--spacing-md);
+      margin-top: var(--spacing-md);
+    }
+    
+    .arg-elements h4 {
+      color: var(--accent-cyan);
+      margin-bottom: var(--spacing-sm);
+      font-size: 1rem;
+    }
+    
+    .arg-elements p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    .arg-elements .hidden-clue {
+      color: var(--accent-orange);
+      font-weight: 600;
+      margin-top: var(--spacing-sm);
+    }
+    
+    @keyframes glitch {
+      0%, 100% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+    }
+    
+    .security-notice {
+      background: rgba(255, 51, 51, 0.1);
+      border: 1px solid var(--accent-red);
+      border-radius: 6px;
+      padding: var(--spacing-sm);
+      margin-top: var(--spacing-md);
+      font-size: 0.8rem;
+      color: var(--accent-red);
+      font-family: 'JetBrains Mono', monospace;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1 class="glitch">ERROR 404<br>OMEGA WARNING</h1>
-    <p>THIS PAGE HAS BEEN BLOCKED FOR THE FOLLOWNG REASON(S).<br>
-    > CLASSIFIED MATERIAL <br>
-    > CONGITO HAZARDS <br>
-    > HORRORS BEYOND HUMAN COMPREHENSION </p>
-    <a href="/">Return to ELRB Mainframe</a>
+  <div class="error-page">
+    <div class="error-container">
+      <div class="error-code">404</div>
+      <h1 class="error-title">Access Denied</h1>
+      <p class="error-subtitle">The requested resource could not be found or access has been restricted.</p>
+      
+      <div class="http-error">
+        <div class="error-line">HTTP/1.1 404 Not Found</div>
+        <div class="error-line">Server: ELC-Security-Proxy/2.1.4</div>
+        <div class="error-line">Date: <span id="currentDate"></span></div>
+        <div class="error-line">Content-Type: text/html; charset=utf-8</div>
+        <div class="error-line">X-ELC-Security: Level-3-Restricted</div>
+        <div class="error-line error">X-ELC-Error: RESOURCE_NOT_FOUND</div>
+        <div class="error-line warning">X-ELC-Warning: ACCESS_ATTEMPT_LOGGED</div>
+        <div class="error-line info">X-ELC-Info: IP_ADDRESS_TRACED</div>
+        <div class="error-line">X-ELC-Protocol: ARG-404-ELRB</div>
+      </div>
+      
+      <div class="error-message">
+        <h3>🚨 Security Protocol Activated</h3>
+        <p>Your access attempt to this restricted area has been logged by ELRB security systems. The requested resource either does not exist or has been moved to a higher security clearance level.</p>
+        <p><strong>Threat Level:</strong> LOW | <strong>Status:</strong> LOGGED | <strong>Action:</strong> MONITORING</p>
+      </div>
+      
+      <div class="error-actions">
+        <a href="index.html" class="btn btn-primary">Return to Main Site</a>
+        <a href="pages/accesspages/employee-access.html" class="btn btn-secondary">Employee Access</a>
+        <a href="pages/accesspages/IAM-access.html" class="btn btn-secondary">IAM Access</a>
+        <a href="pages/accesspages/RND-access.html" class="btn btn-secondary">R&D Access</a>
+      </div>
+      
+      <div class="arg-elements">
+        <h4>🔍 ARG Investigation Notice</h4>
+        <p>This 404 error contains hidden information for ARG investigators. Check the HTTP headers, console logs, and source code for additional clues.</p>
+        <p class="hidden-clue">Hidden Clue: The error code 404 might not be what it seems. Look deeper into the ELRB universe.</p>
+      </div>
+      
+      <div class="security-notice">
+        ⚠️ WARNING: All access attempts are monitored by Project Titan AI. Unauthorized access will result in immediate security response.
+      </div>
+    </div>
   </div>
+  
+  <footer class="error-footer">
+    <div class="disclaimer">
+      <p>All characters and corporations or establishments appearing in this work are fictitious. Any resemblance to real companies or persons is purely coincidental. Do not contact other companies with similar names.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Set current date
+    const now = new Date();
+    document.getElementById('currentDate').textContent = now.toUTCString();
+    
+    // Add some ARG flavor - random glitch effects
+    setInterval(() => {
+      if (Math.random() < 0.1) { // 10% chance
+        document.querySelector('.error-code').style.textShadow = '0 0 30px var(--accent-cyan), 0 0 60px var(--accent-blue)';
+        setTimeout(() => {
+          document.querySelector('.error-code').style.textShadow = '0 0 20px rgba(255, 51, 51, 0.5)';
+        }, 200);
+      }
+    }, 4000);
+    
+    // Console easter egg
+    console.log('%c🚨 404 SECURITY NOTICE 🚨', 'color: #ff3333; font-size: 16px; font-weight: bold;');
+    console.log('%cThis 404 page contains hidden ARG elements. Check the HTTP headers and source code.', 'color: #cccccc; font-size: 14px;');
+    console.log('%cELRB Security Protocol: ARG-404-ELRB', 'color: #00ccff; font-size: 12px; font-family: monospace;');
+    
+    // Add some hidden text that can be found by inspecting
+    const hiddenText = document.createElement('div');
+    hiddenText.style.cssText = 'position: absolute; left: -9999px; top: -9999px; color: transparent;';
+    hiddenText.textContent = 'SUBJECT-230-1-ECHO-STATUS-UNKNOWN-CONTAINMENT-BREACH-SUBLEVEL-5-DETECTED-PROJECT-DAWN-ACTIVATION-REQUIRED-ARCSTAR-POWER-LEVELS-ANOMALOUS-404-ERROR-CONTAINS-HIDDEN-CLUES';
+    document.body.appendChild(hiddenText);
+    
+    // Add some subtle particle effects
+    function createParticles() {
+      for (let i = 0; i < 15; i++) {
+        const particle = document.createElement('div');
+        particle.style.cssText = `
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          background: var(--accent-red);
+          border-radius: 50%;
+          opacity: 0.3;
+          pointer-events: none;
+          animation: float ${3 + Math.random() * 7}s linear infinite;
+          left: ${Math.random() * 100}%;
+          top: ${Math.random() * 100}%;
+        `;
+        
+        document.querySelector('.error-page').appendChild(particle);
+      }
+    }
+    
+    // Add particle animation CSS
+    const particleStyle = document.createElement('style');
+    particleStyle.textContent = `
+      @keyframes float {
+        0% {
+          transform: translateY(0px) translateX(0px);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.3;
+        }
+        90% {
+          opacity: 0.3;
+        }
+        100% {
+          transform: translateY(-100px) translateX(50px);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(particleStyle);
+    
+    createParticles();
+    
+    // Add some random security alerts
+    const securityMessages = [
+      "X-ELC-Alert: Multiple 404 attempts detected from this IP",
+      "X-ELC-Alert: ARG investigation pattern recognized",
+      "X-ELC-Alert: Subject-230-1 containment status unknown",
+      "X-ELC-Alert: Project DAWN activation required",
+      "X-ELC-Alert: ArcStar power levels anomalous"
+    ];
+    
+    setInterval(() => {
+      if (Math.random() < 0.05) { // 5% chance every interval
+        const randomMessage = securityMessages[Math.floor(Math.random() * securityMessages.length)];
+        const alertLine = document.createElement('div');
+        alertLine.className = 'error-line warning';
+        alertLine.textContent = randomMessage;
+        alertLine.style.animation = 'glitch 0.3s infinite';
+        
+        document.querySelector('.http-error').appendChild(alertLine);
+        
+        // Remove after 5 seconds
+        setTimeout(() => {
+          if (alertLine.parentNode) {
+            alertLine.parentNode.removeChild(alertLine);
+          }
+        }, 5000);
+      }
+    }, 8000);
+  </script>
 </body>
 </html>

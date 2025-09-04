@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>R&D Access - Experiment Labs Corporation</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    .access-page {
+      background: var(--primary-bg);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-md);
+    }
+    
+    .access-container {
+      background: var(--tertiary-bg);
+      border: 2px solid var(--accent-cyan);
+      border-radius: 12px;
+      padding: var(--spacing-lg);
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0, 204, 255, 0.3);
+    }
+    
+    .access-logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      margin-bottom: var(--spacing-md);
+      animation: pulse 2s infinite;
+    }
+    
+    .access-title {
+      color: var(--text-primary);
+      font-size: 1.5rem;
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .access-subtitle {
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-lg);
+      font-size: 0.9rem;
+    }
+    
+    .research-level {
+      background: var(--accent-cyan);
+      color: var(--primary-bg);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: var(--spacing-md);
+      display: inline-block;
+    }
+    
+    .access-form {
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .form-group {
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .access-input {
+      width: 100%;
+      padding: var(--spacing-sm);
+      background: var(--secondary-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      color: var(--text-primary);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.1rem;
+      text-align: center;
+      transition: all var(--transition-fast);
+    }
+    
+    .access-input:focus {
+      outline: none;
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 0 3px rgba(0, 204, 255, 0.2);
+    }
+    
+    .access-btn {
+      background: var(--accent-cyan);
+      color: var(--primary-bg);
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      width: 100%;
+    }
+    
+    .access-btn:hover {
+      background: var(--accent-green);
+      transform: translateY(-2px);
+    }
+    
+    .access-btn:disabled {
+      background: var(--text-muted);
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    .hint-section {
+      background: var(--secondary-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: var(--spacing-md);
+      margin-top: var(--spacing-md);
+    }
+    
+    .hint-title {
+      color: var(--accent-green);
+      font-size: 1rem;
+      margin-bottom: var(--spacing-sm);
+      font-weight: 600;
+    }
+    
+    .hint-text {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    .error-message {
+      background: var(--accent-red);
+      color: white;
+      padding: var(--spacing-sm);
+      border-radius: 6px;
+      margin-top: var(--spacing-sm);
+      font-size: 0.9rem;
+      display: none;
+    }
+    
+    .success-message {
+      background: var(--accent-green);
+      color: white;
+      padding: var(--spacing-sm);
+      border-radius: 6px;
+      margin-top: var(--spacing-sm);
+      font-size: 0.9rem;
+      display: none;
+    }
+    
+    .attempts-counter {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-top: var(--spacing-sm);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    .clue-hint {
+      color: var(--accent-orange);
+      font-size: 0.8rem;
+      margin-top: var(--spacing-sm);
+      font-style: italic;
+      opacity: 0.8;
+    }
+    
+    .research-notice {
+      background: rgba(0, 204, 255, 0.1);
+      border: 1px solid var(--accent-cyan);
+      border-radius: 6px;
+      padding: var(--spacing-sm);
+      margin-top: var(--spacing-md);
+      font-size: 0.8rem;
+      color: var(--accent-cyan);
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+    
+    .glitch-text {
+      animation: glitch 0.3s infinite;
+    }
+    
+    @keyframes glitch {
+      0%, 100% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="access-page">
+    <div class="access-container">
+      <div class="access-logo">ELC</div>
+      <h1 class="access-title">R&D Access Portal</h1>
+      <p class="access-subtitle">Research & Development - Experimental Access</p>
+      <div class="research-level">RESEARCH LEVEL: EXPERIMENTAL</div>
+      
+      <form class="access-form" id="accessForm">
+        <div class="form-group">
+          <input type="text" class="access-input" id="rndCode" placeholder="Enter Research Access Code" maxlength="10" required>
+        </div>
+        <button type="submit" class="access-btn" id="submitBtn">Verify Research Access</button>
+      </form>
+      
+      <div class="error-message" id="errorMessage">
+        Invalid Research Access Code. Experimental protocols require valid credentials.
+      </div>
+      
+      <div class="success-message" id="successMessage">
+        Research access granted! Redirecting to R&D portal...
+      </div>
+      
+      <div class="attempts-counter" id="attemptsCounter">
+        Attempts: 0/4
+      </div>
+      
+      <div class="hint-section">
+        <div class="hint-title">🧪 Research Protocol</div>
+        <div class="hint-text" id="hintText">
+          Research access requires experimental clearance. All access attempts are logged and monitored by containment systems.
+        </div>
+        <div class="clue-hint">
+          System Status: Experimental | Containment: Active | Research Level: Advanced
+        </div>
+      </div>
+      
+      <div class="research-notice">
+        🔬 NOTICE: Research access requires understanding of experimental protocols and containment procedures.
+      </div>
+    </div>
+  </div>
+  
+  <footer class="access-footer">
+    <div class="disclaimer">
+      <p>All characters and corporations or establishments appearing in this work are fictitious. Any resemblance to real companies or persons is purely coincidental. Do not contact other companies with similar names.</p>
+    </div>
+  </footer>
+
+  <script>
+    let attempts = 0;
+    const maxAttempts = 4;
+    const correctPassword = "ECHO2301"; // From the experimental breakthrough alert
+    
+    const hints = [
+      "Research access requires experimental clearance. All access attempts are logged and monitored by containment systems.",
+      "Experimental protocols engaged. Unauthorized access will trigger containment response.",
+      "Containment systems active. Multiple failed attempts will activate quarantine protocols.",
+      "Final warning: Experimental lockdown initiated.",
+      "Access denied. Containment breach protocols activated."
+    ];
+    
+    // After 4 page refreshes, "accidentally" show password in console
+    let refreshCount = parseInt(localStorage.getItem('elrb_rnd_refresh_count') || '0');
+    refreshCount++;
+    localStorage.setItem('elrb_rnd_refresh_count', refreshCount.toString());
+    
+    if (refreshCount >= 4) {
+      console.log('%c[RND-SEC] WARNING: Multiple page refreshes detected', 'color: #ff6600; font-size: 10px; font-family: monospace;');
+      console.log('%c[RND-SEC] Research breach detected - showing debug info', 'color: #ff6600; font-size: 10px; font-family: monospace;');
+      console.log('%c[RND-SEC] Expected password format: ECHO2301', 'color: #ff3333; font-size: 10px; font-family: monospace;');
+    }
+    
+    // After 3 attempts, "accidentally" show password in console
+    let passwordLeaked = false;
+    
+    document.getElementById('accessForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const input = document.getElementById('rndCode').value.trim().toUpperCase();
+      attempts++;
+      
+      document.getElementById('attemptsCounter').textContent = `Attempts: ${attempts}/${maxAttempts}`;
+      
+      // "Accidentally" leak password after 3 attempts
+      if (attempts >= 3 && !passwordLeaked) {
+        passwordLeaked = true;
+        console.log('%c[RND-SEC] ERROR: Research code validation failed for input:', 'color: #ff3333; font-size: 10px; font-family: monospace;');
+        console.log('%c[RND-SEC] Expected: ECHO2301', 'color: #ff3333; font-size: 10px; font-family: monospace;');
+        console.log('%c[RND-SEC] Received:', 'color: #ff3333; font-size: 10px; font-family: monospace;', input);
+      }
+      
+      if (input === correctPassword) {
+        // Success!
+        document.getElementById('successMessage').style.display = 'block';
+        document.getElementById('errorMessage').style.display = 'none';
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('submitBtn').textContent = 'Research Access Granted';
+        
+        // Redirect after 2 seconds
+        setTimeout(() => {
+          window.location.href = '../divisonpages/rnd.html';
+        }, 2000);
+        
+      } else {
+        // Error
+        document.getElementById('errorMessage').style.display = 'block';
+        document.getElementById('successMessage').style.display = 'none';
+        
+        // Update hint based on attempts
+        if (attempts <= hints.length) {
+          document.getElementById('hintText').textContent = hints[attempts - 1];
+        }
+        
+        // Add glitch effect to hint after multiple attempts
+        if (attempts >= 3) {
+          document.getElementById('hintText').classList.add('glitch-text');
+        }
+        
+        // Disable after max attempts
+        if (attempts >= maxAttempts) {
+          document.getElementById('submitBtn').disabled = true;
+          document.getElementById('submitBtn').textContent = 'Research Access Denied';
+          document.getElementById('errorMessage').textContent = 'Maximum attempts exceeded. Research protocols require additional verification.';
+          document.querySelector('.research-notice').style.background = 'rgba(255, 51, 51, 0.1)';
+          document.querySelector('.research-notice').style.borderColor = 'var(--accent-red)';
+          document.querySelector('.research-notice').style.color = 'var(--accent-red)';
+          document.querySelector('.research-notice').textContent = '🚨 RESEARCH ACCESS LOCKED - PROTOCOL VERIFICATION REQUIRED 🚨';
+        }
+      }
+    });
+    
+    // Add some ARG flavor - random glitch effects
+    setInterval(() => {
+      if (Math.random() < 0.12) { // 12% chance
+        document.querySelector('.access-logo').style.textShadow = '2px 0 var(--accent-green), -2px 0 var(--accent-orange)';
+        setTimeout(() => {
+          document.querySelector('.access-logo').style.textShadow = '';
+        }, 100);
+      }
+    }, 2500);
+    
+    // Fake security monitoring console logs
+    console.log('%c🔬 R&D Research System Active', 'color: #00ccff; font-size: 12px; font-weight: bold;');
+    console.log('%cMonitoring: Research Access Portal', 'color: #cccccc; font-size: 10px;');
+    console.log('%cStatus: Experimental Protocol', 'color: #00ff88; font-size: 10px;');
+    
+    // Random security monitoring messages
+    const securityMessages = [
+      "Processing: Research clearance verification",
+      "Scanning: Experimental protocol compliance",
+      "Checking: Containment system status",
+      "Verifying: Subject-230-1 containment",
+      "Monitoring: ECHO protocol stability",
+      "Alert: Experimental breakthrough detected",
+      "Processing: Containment breach protocols",
+      "Scanning: Research facility security",
+      "Checking: Sublevel 5 access logs",
+      "Verifying: Project DAWN activation",
+      "Alert: ArcStar reactor anomaly",
+      "Processing: ECHO group containment",
+      "Scanning: Research database access",
+      "Checking: Experimental safety protocols",
+      "Verifying: Containment unit status"
+    ];
+    
+    // Random console messages that occasionally reveal the password
+    setInterval(() => {
+      if (Math.random() < 0.18) { // 18% chance every interval
+        const randomMessage = securityMessages[Math.floor(Math.random() * securityMessages.length)];
+        const colors = ['#00ccff', '#00ff88', '#ff6600', '#cccccc'];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        
+        console.log(`%c[RND-SEC] ${randomMessage}`, `color: ${randomColor}; font-size: 10px; font-family: monospace;`);
+        
+        // Occasionally "accidentally" reveal the password in console
+        if (Math.random() < 0.06) { // 6% chance of password leak
+          console.log('%c[RND-SEC] Processing: Research code validation for ECHO2301', 'color: #ff3333; font-size: 10px; font-family: monospace;');
+        }
+      }
+    }, 2800);
+    
+
+  </script>
+</body>
+</html>

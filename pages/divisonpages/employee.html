@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Portal - Experiment Labs Corporation</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    .employee-portal {
+      background: var(--secondary-bg);
+      min-height: 100vh;
+      padding-top: 100px;
+    }
+    
+    .portal-header {
+      background: var(--tertiary-bg);
+      padding: var(--spacing-lg);
+      text-align: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .portal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-md);
+      padding: var(--spacing-lg);
+    }
+    
+    .portal-card {
+      background: var(--tertiary-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: var(--spacing-md);
+      transition: all var(--transition-medium);
+    }
+    
+    .portal-card:hover {
+      border-color: var(--accent-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px var(--shadow-medium);
+    }
+    
+    .portal-card h3 {
+      color: var(--accent-blue);
+      margin-bottom: var(--spacing-sm);
+      font-size: 1.2rem;
+    }
+    
+    .portal-card p {
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-sm);
+      font-size: 0.9rem;
+    }
+    
+    .portal-card .btn {
+      width: 100%;
+      text-align: center;
+      margin-top: var(--spacing-sm);
+    }
+    
+    .quick-links {
+      background: var(--primary-bg);
+      padding: var(--spacing-lg);
+    }
+    
+    .quick-links h2 {
+      text-align: center;
+      margin-bottom: var(--spacing-md);
+      color: var(--text-primary);
+    }
+    
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--spacing-sm);
+    }
+    
+    .link-item {
+      background: var(--tertiary-bg);
+      padding: var(--spacing-sm);
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      transition: all var(--transition-fast);
+    }
+    
+    .link-item:hover {
+      border-color: var(--accent-blue);
+      background: var(--secondary-bg);
+    }
+    
+    .link-item a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      display: block;
+      transition: color var(--transition-fast);
+    }
+    
+    .link-item:hover a {
+      color: var(--accent-blue);
+    }
+    
+    .announcements {
+      background: var(--secondary-bg);
+      padding: var(--spacing-lg);
+    }
+    
+    .announcement {
+      background: var(--tertiary-bg);
+      border-left: 4px solid var(--accent-blue);
+      padding: var(--spacing-md);
+      margin-bottom: var(--spacing-md);
+      border-radius: 0 6px 6px 0;
+    }
+    
+    .announcement h4 {
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .announcement p {
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .announcement .date {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-container">
+      <div class="logo-section">
+        <div class="logo-container">
+          <div class="logo-symbol">ELC</div>
+          <div class="logo-text">
+            <h1>Experiment Labs Corporation</h1>
+            <p class="tagline">No Risk, No Revolution</p>
+          </div>
+        </div>
+      </div>
+      
+      <nav class="main-nav">
+        <ul>
+          <li><a href="../../index.html" class="nav-link">Home</a></li>
+          <li><a href="employee.html" class="nav-link">Employee Portal</a></li>
+          <li><a href="../accesspages/IAM-access.html" class="nav-link">IAM Access</a></li>
+          <li><a href="../accesspages/RND-access.html" class="nav-link">R&D Portal</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="employee-portal">
+    <div class="portal-header">
+      <h1>Employee Portal</h1>
+      <p>Welcome to your workspace. Access your tools, resources, and company information.</p>
+    </div>
+
+    <div class="portal-grid">
+      <div class="portal-card">
+        <h3>📋 Time & Attendance</h3>
+        <p>Clock in/out, view schedules, and manage your time records.</p>
+        <a href="#" class="btn btn-primary">Access System</a>
+      </div>
+      
+      <div class="portal-card">
+        <h3>💰 Payroll & Benefits</h3>
+        <p>View pay stubs, manage direct deposit, and access benefit information.</p>
+        <a href="#" class="btn btn-primary">View Details</a>
+      </div>
+      
+      <div class="portal-card">
+        <h3>📚 Training & Development</h3>
+        <p>Complete required training modules and access learning resources.</p>
+        <a href="#" class="btn btn-primary">Start Learning</a>
+      </div>
+      
+      <div class="portal-card">
+        <h3>📧 Company Directory</h3>
+        <p>Find contact information for colleagues and departments.</p>
+        <a href="#" class="btn btn-primary">Search Directory</a>
+      </div>
+      
+      <div class="portal-card">
+        <h3>🏥 Health & Safety</h3>
+        <p>Report incidents, access safety protocols, and view health resources.</p>
+        <a href="#" class="btn btn-primary">Report Issue</a>
+      </div>
+      
+      <div class="portal-card">
+        <h3>📊 Performance Reviews</h3>
+        <p>View performance feedback and set goals for the upcoming period.</p>
+        <a href="#" class="btn btn-primary">View Reviews</a>
+      </div>
+    </div>
+
+    <section class="announcements">
+      <div class="container">
+        <h2>Company Announcements</h2>
+        
+        <div class="announcement">
+          <h4>🆕 New Security Protocol Implementation</h4>
+          <p>Effective immediately, all employees must use two-factor authentication when accessing company systems. Please ensure your mobile device is registered with IT by the end of the week.</p>
+          <div class="date">Posted: August 25, 2037</div>
+        </div>
+        
+        <div class="announcement">
+          <h4>🏆 Employee Recognition Program</h4>
+          <p>Nominations are now open for Q3 Employee of the Quarter. Submit your nominations through the HR portal by September 15th.</p>
+          <div class="date">Posted: August 20, 2037</div>
+        </div>
+        
+        <div class="announcement">
+          <h4>📅 Facility Maintenance Notice</h4>
+          <p>Scheduled maintenance on Sublevel 3 will occur this weekend. Please expect temporary power fluctuations and plan accordingly.</p>
+          <div class="date">Posted: August 18, 2037</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quick-links">
+      <div class="container">
+        <h2>Quick Links</h2>
+        <div class="links-grid">
+          <div class="link-item">
+            <a href="../../assets/missingfile.png">Company Policies</a>
+          </div>
+          <div class="link-item">
+            <a href="../../assets/missingfile.png">IT Support</a>
+          </div>
+          <div class="link-item">
+            <a href="../../assets/missingfile.png">Facility Map</a>
+          </div>
+          <div class="link-item">
+            <a href="../../assets/missingfile.png">Emergency Procedures</a>
+          </div>
+          <div class="link-item">
+            <a href="../../assets/missingfile.png">Cafeteria Menu</a>
+          </div>
+          <div class="link-item">
+            <a href="../../assets/missingfile.png">Transportation</a>
+          </div>
+          <div class="link-item">
+            <a href="../../assets/missingfile.png">Wellness Program</a>
+          </div>
+          <div class="link-item">
+            <a href="../../assets/missingfile.png">Feedback Form</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2037 Experiment Labs Corporation. All rights reserved. | Employee Portal v2.1</p>
+        <p class="disclaimer">All characters and corporations or establishments appearing in this work are fictitious. Any resemblance to real companies or persons is purely coincidental. Do not contact other companies with similar names.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/script.js"></script>
+</body>
+</html>
+

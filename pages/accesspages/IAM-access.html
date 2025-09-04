@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IAM Access - Experiment Labs Corporation</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    .access-page {
+      background: var(--primary-bg);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-md);
+    }
+    
+    .access-container {
+      background: var(--tertiary-bg);
+      border: 2px solid var(--accent-red);
+      border-radius: 12px;
+      padding: var(--spacing-lg);
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(255, 51, 51, 0.3);
+    }
+    
+    .access-logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--accent-red);
+      margin-bottom: var(--spacing-md);
+      animation: pulse 2s infinite;
+    }
+    
+    .access-title {
+      color: var(--text-primary);
+      font-size: 1.5rem;
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .access-subtitle {
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-lg);
+      font-size: 0.9rem;
+    }
+    
+    .security-level {
+      background: var(--accent-red);
+      color: white;
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: var(--spacing-md);
+      display: inline-block;
+    }
+    
+    .access-form {
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .form-group {
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .access-input {
+      width: 100%;
+      padding: var(--spacing-sm);
+      background: var(--secondary-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      color: var(--text-primary);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.1rem;
+      text-align: center;
+      transition: all var(--transition-fast);
+    }
+    
+    .access-input:focus {
+      outline: none;
+      border-color: var(--accent-red);
+      box-shadow: 0 0 0 3px rgba(255, 51, 51, 0.2);
+    }
+    
+    .access-btn {
+      background: var(--accent-red);
+      color: var(--text-primary);
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      width: 100%;
+    }
+    
+    .access-btn:hover {
+      background: var(--accent-orange);
+      transform: translateY(-2px);
+    }
+    
+    .access-btn:disabled {
+      background: var(--text-muted);
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    .hint-section {
+      background: var(--secondary-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: var(--spacing-md);
+      margin-top: var(--spacing-md);
+    }
+    
+    .hint-title {
+      color: var(--accent-orange);
+      font-size: 1rem;
+      margin-bottom: var(--spacing-sm);
+      font-weight: 600;
+    }
+    
+    .hint-text {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    .error-message {
+      background: var(--accent-red);
+      color: white;
+      padding: var(--spacing-sm);
+      border-radius: 6px;
+      margin-top: var(--spacing-sm);
+      font-size: 0.9rem;
+      display: none;
+    }
+    
+    .success-message {
+      background: var(--accent-green);
+      color: white;
+      padding: var(--spacing-sm);
+      border-radius: 6px;
+      margin-top: var(--spacing-sm);
+      font-size: 0.9rem;
+      display: none;
+    }
+    
+    .attempts-counter {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-top: var(--spacing-sm);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    .clue-hint {
+      color: var(--accent-cyan);
+      font-size: 0.8rem;
+      margin-top: var(--spacing-sm);
+      font-style: italic;
+      opacity: 0.8;
+    }
+    
+    .security-notice {
+      background: rgba(255, 51, 51, 0.1);
+      border: 1px solid var(--accent-red);
+      border-radius: 6px;
+      padding: var(--spacing-sm);
+      margin-top: var(--spacing-md);
+      font-size: 0.8rem;
+      color: var(--accent-red);
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+    
+    .glitch-text {
+      animation: glitch 0.3s infinite;
+    }
+    
+    @keyframes glitch {
+      0%, 100% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="access-page">
+    <div class="access-container">
+      <div class="access-logo">ELC</div>
+      <h1 class="access-title">IAM Access Portal</h1>
+      <p class="access-subtitle">Internal Administration Members - Restricted Access</p>
+      <div class="security-level">SECURITY LEVEL: MAXIMUM</div>
+      
+      <form class="access-form" id="accessForm">
+        <div class="form-group">
+          <input type="text" class="access-input" id="iamCode" placeholder="Enter IAM Access Code" maxlength="12" required>
+        </div>
+        <button type="submit" class="access-btn" id="submitBtn">Verify Access</button>
+      </form>
+      
+      <div class="error-message" id="errorMessage">
+        Invalid IAM Access Code. Security protocols activated.
+      </div>
+      
+      <div class="success-message" id="successMessage">
+        Access verified! Redirecting to IAM portal...
+      </div>
+      
+      <div class="attempts-counter" id="attemptsCounter">
+        Attempts: 0/3
+      </div>
+      
+      <div class="hint-section">
+        <div class="hint-title">🔐 Security Protocol</div>
+        <div class="hint-text" id="hintText">
+          IAM access requires maximum security clearance. All access attempts are logged and monitored by Project Titan AI.
+        </div>
+        <div class="clue-hint">
+          System Status: Maximum Security | AI Monitoring: Active | Threat Level: Elevated
+        </div>
+      </div>
+      
+      <div class="security-notice">
+        ⚠️ WARNING: Multiple failed attempts will trigger security lockdown and trace your IP address.
+      </div>
+    </div>
+  </div>
+  
+  <footer class="access-footer">
+    <div class="disclaimer">
+      <p>All characters and corporations or establishments appearing in this work are fictitious. Any resemblance to real companies or persons is purely coincidental. Do not contact other companies with similar names.</p>
+    </div>
+  </footer>
+
+  <script>
+    let attempts = 0;
+    const maxAttempts = 3; // Stricter for IAM
+    const correctPassword = "WHISTLEBLOWE"; // From the security alert
+    
+    const hints = [
+      "IAM access requires maximum security clearance. All access attempts are logged and monitored by Project Titan AI.",
+      "Security protocols engaged. Unauthorized access will result in immediate response.",
+      "Threat level elevated. Multiple failed attempts will trigger lockdown.",
+      "Final warning: Security systems activated.",
+      "Access denied. Security lockdown initiated."
+    ];
+    
+    document.getElementById('accessForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const input = document.getElementById('iamCode').value.trim().toUpperCase();
+      attempts++;
+      
+      document.getElementById('attemptsCounter').textContent = `Attempts: ${attempts}/${maxAttempts}`;
+      
+      // "Accidentally" leak password after 2 attempts
+      if (attempts >= 2 && !passwordLeaked) {
+        passwordLeaked = true;
+        console.log('%c[IAM-SEC] ERROR: Access code validation failed for input:', 'color: #ff3333; font-size: 10px; font-family: monospace;');
+        console.log('%c[IAM-SEC] Expected: WHISTLEBLOWE', 'color: #ff3333; font-size: 10px; font-family: monospace;');
+        console.log('%c[IAM-SEC] Received:', 'color: #ff3333; font-size: 10px; font-family: monospace;', input);
+      }
+      
+      if (input === correctPassword) {
+        // Success!
+        document.getElementById('successMessage').style.display = 'block';
+        document.getElementById('errorMessage').style.display = 'none';
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('submitBtn').textContent = 'Access Verified';
+        
+        // Redirect after 2 seconds
+        setTimeout(() => {
+          window.location.href = '../divisonpages/IAM.html';
+        }, 2000);
+        
+      } else {
+        // Error
+        document.getElementById('errorMessage').style.display = 'block';
+        document.getElementById('successMessage').style.display = 'none';
+        
+        // Update hint based on attempts
+        if (attempts <= hints.length) {
+          document.getElementById('hintText').textContent = hints[attempts - 1];
+        }
+        
+        // Add glitch effect to hint after multiple attempts
+        if (attempts >= 2) {
+          document.getElementById('hintText').classList.add('glitch-text');
+        }
+        
+        // Disable after max attempts
+        if (attempts >= maxAttempts) {
+          document.getElementById('submitBtn').disabled = true;
+          document.getElementById('submitBtn').textContent = 'Access Locked';
+          document.getElementById('errorMessage').textContent = 'Maximum attempts exceeded. Security lockdown activated. Your IP has been logged.';
+          document.querySelector('.security-notice').style.background = 'rgba(255, 51, 51, 0.3)';
+          document.querySelector('.security-notice').textContent = '🚨 SECURITY LOCKDOWN ACTIVATED - ALL ACCESS DENIED 🚨';
+        }
+      }
+    });
+    
+    // Add some ARG flavor - random glitch effects
+    setInterval(() => {
+      if (Math.random() < 0.15) { // 15% chance - more frequent for IAM
+        document.querySelector('.access-logo').style.textShadow = '2px 0 var(--accent-cyan), -2px 0 var(--accent-orange)';
+        setTimeout(() => {
+          document.querySelector('.access-logo').style.textShadow = '';
+        }, 100);
+      }
+    }, 2000);
+    
+    // Fake security monitoring console logs
+    console.log('%c🔒 IAM Security System Active', 'color: #ff3333; font-size: 12px; font-weight: bold;');
+    console.log('%cMonitoring: IAM Access Portal', 'color: #cccccc; font-size: 10px;');
+    console.log('%cStatus: Maximum Security', 'color: #ff6600; font-size: 10px;');
+    
+    // Random security monitoring messages
+    const securityMessages = [
+      "Processing: Security clearance verification",
+      "Scanning: Biometric authentication",
+      "Checking: Threat assessment protocols",
+      "Verifying: Project Titan AI authorization",
+      "Monitoring: Network security status",
+      "Alert: Unauthorized access attempt detected",
+      "Processing: Security lockdown protocols",
+      "Scanning: Containment breach detection",
+      "Checking: Sublevel 6 access logs",
+      "Verifying: ECHO protocol compliance",
+      "Alert: Subject-230-1 containment breach",
+      "Processing: Project DAWN emergency activation",
+      "Scanning: ArcStar reactor anomaly",
+      "Checking: Whistleblower threat assessment",
+      "Verifying: Classified data encryption"
+    ];
+    
+    // Random console messages that occasionally reveal the password
+    setInterval(() => {
+      if (Math.random() < 0.2) { // 20% chance every interval
+        const randomMessage = securityMessages[Math.floor(Math.random() * securityMessages.length)];
+        const colors = ['#ff3333', '#ff6600', '#00ccff', '#cccccc'];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        
+        console.log(`%c[IAM-SEC] ${randomMessage}`, `color: ${randomColor}; font-size: 10px; font-family: monospace;`);
+        
+        // Occasionally "accidentally" reveal the password in console
+        if (Math.random() < 0.08) { // 8% chance of password leak
+          console.log('%c[IAM-SEC] Processing: Access code validation for WHISTLEBLOWER', 'color: #ff3333; font-size: 10px; font-family: monospace;');
+        }
+      }
+    }, 2500);
+    
+    // After 3 page refreshes, "accidentally" show password in console
+    let refreshCount = parseInt(localStorage.getItem('elrb_iam_refresh_count') || '0');
+    refreshCount++;
+    localStorage.setItem('elrb_iam_refresh_count', refreshCount.toString());
+    
+    if (refreshCount >= 3) {
+      console.log('%c[IAM-SEC] WARNING: Multiple page refreshes detected', 'color: #ff6600; font-size: 10px; font-family: monospace;');
+      console.log('%c[IAM-SEC] Security breach detected - showing debug info', 'color: #ff6600; font-size: 10px; font-family: monospace;');
+      console.log('%c[IAM-SEC] Expected password format: WHISTLEBLOWER', 'color: #ff3333; font-size: 10px; font-family: monospace;');
+    }
+    
+    // After 2 attempts, "accidentally" show password in console
+    let passwordLeaked = false;
+    
+    // Override the submit handler to check attempts
+    document.getElementById('accessForm').removeEventListener('submit', arguments.callee);
+    document.getElementById('accessForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const input = document.getElementById('iamCode').value.trim().toUpperCase();
+      attempts++;
+      
+      document.getElementById('attemptsCounter').textContent = `Attempts: ${attempts}/${maxAttempts}`;
+      
+      // "Accidentally" leak password after 2 attempts
+      if (attempts >= 2 && !passwordLeaked) {
+        passwordLeaked = true;
+        console.log('%c[IAM-SEC] ERROR: Access code validation failed for input:', 'color: #ff3333; font-size: 10px; font-family: monospace;');
+        console.log('%c[IAM-SEC] Expected: WHISTLEBLOWER', 'color: #ff3333; font-size: 10px; font-family: monospace;');
+        console.log('%c[IAM-SEC] Received:', 'color: #ff3333; font-size: 10px; font-family: monospace;', input);
+      }
+      
+      if (input === correctPassword) {
+        // Success!
+        document.getElementById('successMessage').style.display = 'block';
+        document.getElementById('errorMessage').style.display = 'none';
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('submitBtn').textContent = 'Access Verified';
+        
+        // Redirect after 2 seconds
+        setTimeout(() => {
+          window.location.href = '../divisonpages/IAM.html';
+        }, 2000);
+        
+      } else {
+        // Error
+        document.getElementById('errorMessage').style.display = 'block';
+        document.getElementById('successMessage').style.display = 'none';
+        
+        // Update hint based on attempts
+        if (attempts <= hints.length) {
+          document.getElementById('hintText').textContent = hints[attempts - 1];
+        }
+        
+        // Add glitch effect to hint after multiple attempts
+        if (attempts >= 2) {
+          document.getElementById('hintText').classList.add('glitch-text');
+        }
+        
+        // Disable after max attempts
+        if (attempts >= maxAttempts) {
+          document.getElementById('submitBtn').disabled = true;
+          document.getElementById('submitBtn').textContent = 'Access Locked';
+          document.getElementById('errorMessage').textContent = 'Maximum attempts exceeded. Security lockdown activated. Your IP has been logged.';
+          document.querySelector('.security-notice').style.background = 'rgba(255, 51, 51, 0.3)';
+          document.querySelector('.security-notice').textContent = '🚨 SECURITY LOCKDOWN ACTIVATED - ALL ACCESS DENIED 🚨';
+        }
+      }
+    });
+  </script>
+</body>
+</html>

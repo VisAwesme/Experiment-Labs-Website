@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>R&D Portal - Experiment Labs Corporation</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    .rnd-portal {
+      background: var(--primary-bg);
+      min-height: 100vh;
+      padding-top: 100px;
+    }
+    
+    .portal-header {
+      background: linear-gradient(135deg, var(--tertiary-bg) 0%, var(--secondary-bg) 100%);
+      padding: var(--spacing-lg);
+      text-align: center;
+      border-bottom: 2px solid var(--accent-cyan);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .portal-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(0, 204, 255, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    
+    .portal-header h1 {
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-sm);
+      font-size: 2.5rem;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .portal-header p {
+      color: var(--text-secondary);
+      position: relative;
+      z-index: 2;
+    }
+    
+    .experiment-alert {
+      background: linear-gradient(135deg, #006400 0%, #32CD32 100%);
+      border: 2px solid var(--accent-green);
+      border-radius: 8px;
+      padding: var(--spacing-md);
+      margin: var(--spacing-md);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .experiment-alert::before {
+      content: '🧪';
+      position: absolute;
+      top: var(--spacing-sm);
+      right: var(--spacing-sm);
+      font-size: 2rem;
+      opacity: 0.7;
+    }
+    
+    .experiment-alert h3 {
+      color: white;
+      margin-bottom: var(--spacing-sm);
+      font-size: 1.3rem;
+    }
+    
+    .experiment-alert p {
+      color: #E0FFE0;
+      line-height: 1.6;
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .experiment-alert .timestamp {
+      color: #90EE90;
+      font-size: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    .portal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: var(--spacing-md);
+      padding: var(--spacing-lg);
+    }
+    
+    .portal-card {
+      background: var(--tertiary-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: var(--spacing-md);
+      transition: all var(--transition-medium);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .portal-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-green));
+      transform: scaleX(0);
+      transition: transform var(--transition-medium);
+    }
+    
+    .portal-card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .portal-card:hover {
+      border-color: var(--accent-cyan);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(0, 204, 255, 0.2);
+    }
+    
+    .portal-card h3 {
+      color: var(--accent-cyan);
+      margin-bottom: var(--spacing-sm);
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+    
+    .portal-card p {
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-sm);
+      font-size: 0.9rem;
+    }
+    
+    .portal-card .btn {
+      width: 100%;
+      text-align: center;
+      margin-top: var(--spacing-sm);
+      background: var(--accent-cyan);
+      border-color: var(--accent-cyan);
+    }
+    
+    .portal-card .btn:hover {
+      background: transparent;
+      color: var(--accent-cyan);
+    }
+    
+    .experiment-section {
+      background: var(--secondary-bg);
+      padding: var(--spacing-lg);
+      border-top: 2px solid var(--accent-cyan);
+    }
+    
+    .experiment-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-md);
+    }
+    
+    .experiment-item {
+      background: var(--tertiary-bg);
+      border: 1px solid var(--accent-cyan);
+      border-radius: 8px;
+      padding: var(--spacing-md);
+      transition: all var(--transition-fast);
+      position: relative;
+    }
+    
+    .experiment-item:hover {
+      background: var(--accent-cyan);
+      color: var(--primary-bg);
+    }
+    
+    .experiment-item .status-badge {
+      position: absolute;
+      top: var(--spacing-sm);
+      right: var(--spacing-sm);
+      padding: 0.25rem 0.5rem;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    .status-badge.active {
+      background: var(--accent-green);
+      color: var(--primary-bg);
+    }
+    
+    .status-badge.warning {
+      background: var(--accent-orange);
+      color: var(--primary-bg);
+    }
+    
+    .status-badge.critical {
+      background: var(--accent-red);
+      color: white;
+    }
+    
+    .experiment-item h4 {
+      color: inherit;
+      margin-bottom: var(--spacing-sm);
+      font-size: 1.1rem;
+      padding-right: 80px;
+    }
+    
+    .experiment-item p {
+      color: inherit;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    
+    .experiment-item .details {
+      margin-top: var(--spacing-sm);
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+    
+    .containment-section {
+      background: var(--primary-bg);
+      padding: var(--spacing-lg);
+    }
+    
+    .containment-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-md);
+    }
+    
+    .containment-card {
+      background: var(--tertiary-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: var(--spacing-md);
+      position: relative;
+    }
+    
+    .containment-card.breach {
+      border-color: var(--accent-red);
+      background: rgba(255, 51, 51, 0.1);
+    }
+    
+    .containment-card h4 {
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-sm);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+    
+    .containment-card .breach-indicator {
+      background: var(--accent-red);
+      color: white;
+      padding: 0.25rem 0.5rem;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .containment-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .containment-card .subjects {
+      background: var(--secondary-bg);
+      padding: var(--spacing-sm);
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    
+    .research-log {
+      background: var(--tertiary-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: var(--spacing-md);
+      margin-top: var(--spacing-md);
+    }
+    
+    .research-log h5 {
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-sm);
+      font-size: 1rem;
+    }
+    
+    .log-entry {
+      background: var(--secondary-bg);
+      padding: var(--spacing-sm);
+      margin-bottom: var(--spacing-sm);
+      border-radius: 4px;
+      border-left: 3px solid var(--accent-cyan);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+    }
+    
+    .log-entry .time {
+      color: var(--accent-cyan);
+      font-weight: 600;
+    }
+    
+    .log-entry .researcher {
+      color: var(--accent-green);
+    }
+    
+    .log-entry .action {
+      color: var(--text-secondary);
+    }
+    
+    .log-entry .warning {
+      color: var(--accent-orange);
+      font-weight: 600;
+    }
+    
+    .log-entry .critical {
+      color: var(--accent-red);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-container">
+      <div class="logo-section">
+        <div class="logo-container">
+          <div class="logo-symbol">ELC</div>
+          <div class="logo-text">
+            <h1>Experiment Labs Corporation</h1>
+            <p class="tagline">No Risk, No Revolution</p>
+          </div>
+        </div>
+      </div>
+      
+      <nav class="main-nav">
+        <ul>
+          <li><a href="../../index.html" class="nav-link">Home</a></li>
+          <li><a href="employee.html" class="nav-link">Employee Portal</a></li>
+          <li><a href="../accesspages/IAM-access.html" class="nav-link">IAM Access</a></li>
+          <li><a href="rnd.html" class="nav-link">R&D Portal</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="rnd-portal">
+    <div class="portal-header">
+      <h1>Research & Development Portal</h1>
+      <p>Advanced experimental protocols and containment management. Authorized personnel only.</p>
+    </div>
+
+    <div class="experiment-alert">
+      <h3>🧪 EXPERIMENTAL BREAKTHROUGH ALERT 🧪</h3>
+      <p><strong>BREAKTHROUGH:</strong> Subject-230-1 has demonstrated unprecedented ECHO stability patterns. Containment protocols have been modified to accommodate new behavioral observations. All research staff are advised to review updated safety procedures before entering containment zones.</p>
+      <p><strong>Priority:</strong> HIGH | <strong>Status:</strong> MONITORING</p>
+      <div class="timestamp">Alert Issued: August 25, 2037 - 15:47:33 UTC</div>
+    </div>
+
+    <div class="portal-grid">
+                <div class="portal-card">
+            <h3>🔬 Experimental Protocols</h3>
+            <p>Access to advanced research methodologies, containment procedures, and experimental design tools. Includes classified research data.</p>
+            <a href="../../assets/missingfile.png" class="btn btn-primary">View Protocols</a>
+          </div>
+          
+          <div class="portal-card">
+            <h3>🧬 Aberration Research</h3>
+            <p>Comprehensive database of aberration specimens, behavioral patterns, and containment strategies. Real-time monitoring systems.</p>
+            <a href="../../assets/missingfile.png" class="btn btn-primary">Research Database</a>
+          </div>
+          
+          <div class="portal-card">
+            <h3>🤖 AI Development</h3>
+            <p>Project DAWN integration, ARIS optimization, and experimental AI consciousness research. Neural network analysis tools.</p>
+            <a href="../../assets/missingfile.png" class="btn btn-primary">AI Lab</a>
+          </div>
+          
+          <div class="portal-card">
+            <h3>⚡ Reactor Research</h3>
+            <p>ArcStar fusion reactor optimization, power distribution analysis, and experimental energy protocols. Safety override systems.</p>
+            <a href="../../assets/missingfile.png" class="btn btn-primary">Reactor Control</a>
+          </div>
+          
+          <div class="portal-card">
+            <h3>🚀 Space Research</h3>
+            <p>Hawke Station data analysis, deep space research coordination, and experimental propulsion systems. Interstellar protocols.</p>
+            <a href="../../assets/missingfile.png" class="btn btn-primary">Space Division</a>
+          </div>
+          
+          <div class="portal-card">
+            <h3>🔒 Containment Systems</h3>
+            <p>Advanced containment unit management, breach prevention protocols, and emergency response systems. Sublevel monitoring.</p>
+            <a href="../../assets/missingfile.png" class="btn btn-primary">Containment Control</a>
+          </div>
+    </div>
+
+    <section class="experiment-section">
+      <div class="container">
+        <h2>🧪 Active Experiments</h2>
+        <div class="experiment-grid">
+          <div class="experiment-item">
+            <span class="status-badge active">ACTIVE</span>
+            <h4>Project ECHO - Subject 230-1</h4>
+            <p>Enhanced Contained Host Operations. Subject demonstrates stable cognitive retention with minimal contamination risk.</p>
+            <div class="details">Location: Sector 7 | Status: Stable | Risk: Low</div>
+          </div>
+          
+          <div class="experiment-item">
+            <span class="status-badge warning">ATTENTION</span>
+            <h4>Project DAWN - AI Integration</h4>
+            <p>Advanced AI consciousness research with potential Dr. Hawke consciousness integration. Anomalous behavior patterns detected.</p>
+            <div class="details">Location: AI Lab | Status: Unstable | Risk: Medium</div>
+          </div>
+          
+          <div class="experiment-item">
+            <span class="status-badge critical">CRITICAL</span>
+            <h4>Sublevel 5 - Containment</h4>
+            <p>Multiple aberration containment failures. ECHO subjects unaccounted for. Emergency protocols activated.</p>
+            <div class="details">Location: Sublevel 5 | Status: Breach | Risk: Extreme</div>
+          </div>
+          
+          <div class="experiment-item">
+            <span class="status-badge active">ACTIVE</span>
+            <h4>ArcStar Reactor - Power Optimization</h4>
+            <p>Fusion reactor efficiency enhancement. Experimental power distribution protocols. Stable operation maintained.</p>
+            <div class="details">Location: Reactor Core | Status: Stable | Risk: Low</div>
+          </div>
+          
+          <div class="experiment-item">
+            <span class="status-badge warning">ATTENTION</span>
+            <h4>Project VESSEL - Human-Machine Interface</h4>
+            <p>Experimental human-machine fusion research. One subject successfully fused. Thermal readings indicate movement.</p>
+            <div class="details">Location: Sublevel 5 | Status: Unstable | Risk: High</div>
+          </div>
+          
+          <div class="experiment-item">
+            <span class="status-badge active">ACTIVE</span>
+            <h4>Hawke Station - Jupiter Research</h4>
+            <p>Interplanetary research operations. Experimental propulsion testing. Deep space observation protocols.</p>
+            <div class="details">Location: Jupiter Orbit | Status: Stable | Risk: Low</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="containment-section">
+      <div class="container">
+        <h2>🔒 Containment Status</h2>
+        <div class="containment-grid">
+          <div class="containment-card">
+            <h4>🟢 Sector 7 - ECHO Zone</h4>
+            <p>Enhanced Contained Hosts Operations. Specialized containment with limited freedoms. Biohazard-neutralizing barriers active.</p>
+            <div class="subjects">Subjects: 12 ECHO members | Status: Secure | Access: Restricted</div>
+          </div>
+          
+          <div class="containment-card breach">
+            <h4>🔴 Sublevel 5 - Aberration Zone</h4>
+            <div class="breach-indicator">CONTAINMENT BREACH</div>
+            <p>Multiple containment unit failures. ECHO subjects unaccounted for. Emergency response teams deployed.</p>
+            <div class="subjects">Subjects: 8 ECHO members | Status: BREACH | Access: EMERGENCY ONLY</div>
+          </div>
+          
+          <div class="containment-card">
+            <h4>🟡 Unit-3-ECHO</h4>
+            <p>Semi-sentient test subject containment. Specialized protocols for memory retention subjects. Continuous monitoring.</p>
+            <div class="subjects">Subjects: 3 ECHO variants | Status: Stable | Access: Authorized</div>
+          </div>
+          
+          <div class="containment-card">
+            <h4>🟢 Sublevel 6 - Sealed Zone</h4>
+            <p>Permanently sealed after 1998 D2-HELL7 incident. No access permitted. Camera feeds occasionally glitch.</p>
+            <div class="subjects">Subjects: Unknown | Status: Sealed | Access: None</div>
+          </div>
+        </div>
+        
+        <div class="research-log">
+          <h5>Recent Research Logs</h5>
+          <div class="log-entry">
+            <span class="time">[15:47:33]</span> <span class="researcher">Dr. Ena Voss</span> <span class="action">modified Project DAWN parameters</span>
+          </div>
+          <div class="log-entry">
+            <span class="time">[15:45:18]</span> <span class="researcher">Kai Sorensen</span> <span class="action">reported Subject-230-1 behavioral changes</span>
+          </div>
+          <div class="log-entry">
+            <span class="time">[15:42:55]</span> <span class="researcher">SYSTEM</span> <span class="warning">containment breach detected - Sublevel 5</span>
+          </div>
+          <div class="log-entry">
+            <span class="time">[15:40:12]</span> <span class="researcher">Dr. Everett Hawke</span> <span class="action">authorized emergency protocols</span>
+          </div>
+          <div class="log-entry">
+            <span class="time">[15:38:47]</span> <span class="researcher">ARIS</span> <span class="critical">anomalous power fluctuations detected</span>
+          </div>
+          <div class="log-entry">
+            <span class="time">[15:35:29]</span> <span class="researcher">Project Titan</span> <span class="action">initiated predictive containment protocols</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2037 Experiment Labs Corporation. All rights reserved. | R&D Portal v1.0 | RESEARCH CLEARANCE REQUIRED</p>
+        <p class="disclaimer">All characters and corporations or establishments appearing in this work are fictitious. Any resemblance to real companies or persons is purely coincidental. Do not contact other companies with similar names.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/script.js"></script>
+</body>
+</html>
